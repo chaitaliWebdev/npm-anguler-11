@@ -1,0 +1,110 @@
+.chat-main-list-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% + 50px);
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 10px 45px 10px 15px;
+  h4 {
+    font-weight: 500;
+    font-size: 15px;
+  }
+}
+
+.chat-main-list-area .ant-list-split .ant-list-item {
+  border: none !important;
+}
+nz-list-item-meta-title {
+  width: 100%;
+}
+
+.singlechat {
+  padding: 7px 10px;
+  max-width: 500px;
+  border-radius: 5px;
+  position: relative;
+  small {
+    display: block;
+    clear: both;
+    color: var(--antd-wave-shadow-color);
+    font-weight: 600;
+  }
+}
+.from-you {
+  background-color: #eeeeee;
+  float: left;
+  margin-left: 15px;
+}
+
+.from-you:before {
+  width: 0;
+  content: "";
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 11px dashed;
+  border-top: 4px solid\9;
+  border-right: 9px solid transparent;
+  border-left: 4px solid transparent;
+  position: absolute;
+  left: -12px;
+  top: 10px;
+  color: #eeeeee;
+  transform: rotate(100deg);
+}
+
+.from-me {
+  background-color: #f8eeec;
+  float: right;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.from-me:before {
+  width: 0;
+  content: "";
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 11px dashed;
+  border-top: 4px solid\9;
+  border-right: 9px solid transparent;
+  border-left: 4px solid transparent;
+  position: absolute;
+  right: -9px;
+  top: 6px;
+  color: #f8eeec;
+  transform: rotate(10deg);
+}
+
+.reply-message {
+  position: relative;
+  display: block;
+  background: #e5dcd5;
+  color: #1e2023;
+  border-radius: 5px;
+  padding: 5px;
+  border-left: 5px solid #1e2023;
+  margin: 10px 0;
+  font-size: 14px;
+
+  .reply-name {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: left;
+  }
+}
+
+::ng-deep {
+
+  .ant-notification-notice  {
+    padding: 0;
+  }
+}

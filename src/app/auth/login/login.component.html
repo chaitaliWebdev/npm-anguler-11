@@ -1,0 +1,44 @@
+<div class="outerContainer">
+  <nz-card class="loginCard">
+    <div class="logo-area mb5">
+      <img src="/assets/images/logo.png" alt="">
+    </div>
+    <!-- <h2 class="loginHeader">Login</h2> -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your mobile!" >
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input [(ngModel)]="mobile" placeholder="Phone" [disabled]="isOTPRequestSend" />
+            <!-- <ng-template #errorTplEmail let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                Please input your email address
+              </ng-container>
+              <ng-container *ngIf="control.hasError('pattern')">
+                Please input a valid email address
+              </ng-container>
+            </ng-template> -->
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="isOTPRequestSend">
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input [(ngModel)]="otp" placeholder="OTP" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- <div nz-row class="login-form-margin">
+
+        <div nz-col [nzSpan]="24" class="login-form-forgot">
+          <a>Forgot password</a>
+        </div>
+      </div> -->
+      <div nz-col [nzSpan]="24" class="login-button">
+        <button *ngIf = "!isOTPRequestSend; else submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="submitOtpForm()"
+          [nzLoading]="isLoading">Request OTP</button>
+          <ng-template #submit>
+            <button  nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="submitLoginForm()"
+            [nzLoading]="isLoading">Submit</button>
+          </ng-template>
+      </div>
+  </nz-card>
+</div>

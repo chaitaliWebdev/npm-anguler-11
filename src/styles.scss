@@ -1,0 +1,245 @@
+/* You can add global styles to this file, and also import other style files */
+/* Jan 25 */
+@import "variables";
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/webfonts/Montserrat-Bold.eot");
+  src: url("assets/webfonts/Montserrat-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("assets/webfonts/Montserrat-Bold.woff2") format("woff2"),
+    url("assets/webfonts/Montserrat-Bold.woff") format("woff"),
+    url("assets/webfonts/Montserrat-Bold.ttf") format("truetype"),
+    url("assets/webfonts/Montserrat-Bold.svg#Montserrat-Bold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/webfonts/Montserrat-Regular.eot");
+  src: url("assets/webfonts/Montserrat-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("assets/webfonts/Montserrat-Regular.woff2") format("woff2"),
+    url("assets/webfonts/Montserrat-Regular.woff") format("woff"),
+    url("assets/webfonts/Montserrat-Regular.ttf") format("truetype"),
+    url("assets/webfonts/Montserrat-Regular.svg#Montserrat-Regular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/webfonts/Montserrat-Medium.eot");
+  src: url("assets/webfonts/Montserrat-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("assets/webfonts/Montserrat-Medium.woff2") format("woff2"),
+    url("assets/webfonts/Montserrat-Medium.woff") format("woff"),
+    url("assets/webfonts/Montserrat-Medium.ttf") format("truetype"),
+    url("assets/webfonts/Montserrat-Medium.svg#Montserrat-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/webfonts/Montserrat-SemiBold.eot");
+  src: url("assets/webfonts/Montserrat-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("assets/webfonts/Montserrat-SemiBold.woff2") format("woff2"),
+    url("assets/webfonts/Montserrat-SemiBold.woff") format("woff"),
+    url("assets/webfonts/Montserrat-SemiBold.ttf") format("truetype"),
+    url("assets/webfonts/Montserrat-SemiBold.svg#Montserrat-SemiBold")
+      format("svg");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Montserrat";
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+.ant-card {
+  border-radius: $ecademictubeCardRadius !important;
+  box-shadow: $ecademictubeShadow;
+  .ant-card-actions {
+    border-radius: 0 0 $ecademictubeCardRadius $ecademictubeCardRadius !important;
+  }
+  .ant-card-head {
+    border-radius: $ecademictubeCardRadius $ecademictubeCardRadius 0 0 !important;
+    background: rgb(247 121 36 / 40%);
+    .ant-card-extra {
+      a {
+        color: $ecademictubeSecondaryColor;
+      }
+    }
+    .ant-card-head-title {
+      font-weight: bold;
+    }
+  }
+}
+
+.ant-table {
+  line-height: 0.5715;
+  // .ant-table-thead > tr > th {
+  //   background: rgb(247 121 36 / 40%);
+  // }
+  // .ant-table-thead > tr > th:first-child {
+  //   border-radius: $ecademictubeCardRadius 0 0 0 !important;
+  // }
+  // .ant-table-thead > tr > th:last-child {
+  //   border-radius: 0 $ecademictubeCardRadius 0 0 !important;
+  // }
+  // .ant-table-thead > tr > th:only-child {
+  //   border-radius: $ecademictubeCardRadius $ecademictubeCardRadius 0 0 !important;
+  // }
+  // .ant-table-thead {
+  //   .ant-table-cell {
+  //     font-weight: bold;
+  //   }
+  // }
+}
+
+.ant-card:hover{
+  box-shadow: $ecademictubeShadowHover;
+}
+.ant-card.no-color {
+  .ant-card-head {
+    background: #ffffff;
+  }
+}
+
+
+.ant-collapse {
+  border-radius: $ecademictubeCardRadius !important;
+  box-shadow: $ecademictubeShadow;
+  .ant-collapse-actions {
+    border-radius: 0 0 $ecademictubeCardRadius $ecademictubeCardRadius !important;
+  }
+  .ant-collapse-header {
+    // border-radius: $ecademictubeCardRadius $ecademictubeCardRadius 0 0 !important;
+    background: rgb(247 121 36 / 40%);
+    .ant-collapse-extra {
+      a {
+        color: $ecademictubeSecondaryColor;
+      }
+    }
+    font-weight: bold;
+
+  }
+}
+
+.ant-collapse:hover{
+  box-shadow: $ecademictubeShadowHover;
+}
+.ant-collapse.no-color {
+  .ant-collapse-head {
+    background: #ffffff;
+  }
+}
+
+.ecademictube-shadow {
+  box-shadow: $ecademictubeShadow;
+}
+.ecademictube-shadow:hover {
+  box-shadow: $ecademictubeShadowHover;
+}
+
+
+
+/* End Jan 25 */
+
+
+.topheadingifbutton {
+  position: relative;
+  margin-bottom: 20px;
+  clear: both;
+  overflow: hidden;
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 15px;
+  h3 {
+    float: left;
+    font-size: 22px;
+    letter-spacing: 0.2px;
+  }
+}
+
+//status active/in-active
+.active {
+  background-color: green;
+}
+.inactive {
+  background-color: red;
+}
+.status {
+  width: 12px;
+  height: 12px;
+  display: block;
+  // float: right;
+  margin-left: 5px;
+  display: inline-block;
+  border-radius: 7px;
+}
+// Dynamic Margin & Padding class:
+$sizes: 12;
+
+@mixin margin-classes {
+  @for $i from 1 through $sizes {
+    $margin: $i * 0.25rem;
+    /* margin #{$margin} */
+    .m#{$i}  {margin: $margin;}
+    .ml#{$i} {margin-left: $margin;}
+    .mr#{$i} {margin-right: $margin;}
+    .mt#{$i} {margin-top: $margin;}
+    .mb#{$i} {margin-bottom: $margin;}
+    .mx#{$i} {margin-left: $margin; margin-right: $margin;}
+    .my#{$i} {margin-top: $margin; margin-bottom: $margin;}
+  }
+}
+@include margin-classes;
+
+
+@mixin padding-classes {
+  @for $i from 1 through $sizes {
+    $padding: $i * 0.25rem;
+    /* padding #{$padding} */
+    .p#{$i} {padding: $padding;}
+    .pl#{$i} {padding-left: $padding;}
+    .pr#{$i} {padding-right: $padding;}
+    .pt#{$i} {padding-top: $padding;}
+    .pb#{$i} {padding-bottom: $padding;}
+    .px#{$i} {padding-left: $padding; padding-right: $padding;}
+    .py#{$i} {padding-top: $padding; padding-bottom: $padding;}
+  }
+}
+@include padding-classes;
+
+.addUpdateButton{
+  float: right;
+}
+
+.ant-tag-checkable {
+  border: 1px solid;
+}
+
+:root{
+  --color-base: #000;
+  --color-theme: #ef583b;
+  --color-theme1: #143753;
+  --color-lightgray: #f2f2f2;
+  --color-mideumgray: #d0d0d0;
+}
+
+.app-layout{
+  background-color: transparent ;
+  background-image: url(../src/assets/images/bodybg.jpg);
+  min-height: 100vh;
+}
+.ant-layout-footer, .ant-layout{
+  background-color: transparent ;
+}

@@ -1,0 +1,31 @@
+<div class="user-search">
+  <nz-input-group [nzSuffix]="suffixIconSearch">
+    <input type="text" nz-input placeholder="Search or start new chat" [(ngModel)]="nameSearch" />
+  </nz-input-group>
+  <ng-template #suffixIconSearch>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+</div>
+<div class="allchatnamelist">
+  <div class="innerchatnamelist">
+    <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+      <nz-list-item class="itemchatlist" [ngClass]="{'activeUser': item._id === activeRoomId}" *ngFor="let item of users | filterArray: nameSearch" (click)="selectUser(item.user._id, item._id)">
+
+        <nz-list-item-meta
+          [nzAvatar]="item.user && item.user.profilePicture ? mediaBaseUrl+item.user?.profilePicture : 'https://ui-avatars.com/api/?name='+ item.name"
+        >
+          <nz-list-item-meta-title>
+
+            {{ item.user?.username | slice: 0 : 15 }} {{item.user?.username.length > 15 ? '..' : ''}} <nz-badge nzStandalone [nzCount]="item.unreadCount" [nzStyle]="{ backgroundColor: '#52c41a' }"></nz-badge><span class="{{onlineUsers.includes(item.user?._id) ? 'active' : '' }} status" ></span>
+            <small>{{ item.user?.mobile }}</small>
+            <!-- <small>{{ item.lastMessage }}</small> -->
+            <nz-tag *ngIf="item.chatGroup" [nzColor]="'orange'">{{item.chatGroup.title}}</nz-tag>
+            <small *ngIf="item.lastMessage && item.lastMessage.message">{{ item.lastMessage?.message | slice: 0 : 20 }} {{item.lastMessage?.message.length > 20 ? '..' : ''}}</small>
+
+          </nz-list-item-meta-title>
+        </nz-list-item-meta>
+      </nz-list-item>
+      <nz-list-empty *ngIf="users.length === 0"></nz-list-empty>
+    </nz-list>
+  </div>
+</div>

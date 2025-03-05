@@ -1,0 +1,85 @@
+
+<div class="main-chatbody">
+  <div class="chat-header">
+    <div class="user-pic-name">
+      <nz-avatar
+        [nzSrc]="
+          user.profilePicture
+            ? mediaBaseUrl + user.profilePicture
+            : 'https://ui-avatars.com/api/?name=' + user.username
+        "
+      ></nz-avatar>
+      <h4>{{ selectedUser.username }}</h4>
+    </div>
+    <div class="ifactions">
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+      <i nz-icon nzType="more" nzTheme="outline"></i>
+    </div>
+  </div>
+  <div class="chat-body">
+    <app-chat-body
+      [messages]="messages"
+      (replyItem)="replyItem($event)"
+    ></app-chat-body>
+  </div>
+  <div class="chat-footer">
+    <p *ngIf="userTyping" class="typing-text">
+      {{ typingUser.username }} is typing ...
+    </p>
+    <nz-upload
+      [nzShowUploadList]="false"
+      [nzBeforeUpload]="beforeVideoUpload"
+      (nzChange)="handleUploadExplainVideo($event)"
+      [nzAction]="mediaUploadUrl"
+      [nzHeaders]="customRequestHeaders"
+      [nzName]="'file'"
+    >
+      <div class="upload-attach">
+        <i nz-icon nzType="paper-clip" nzTheme="outline"></i>
+      </div>
+    </nz-upload>
+
+    <div class="textchatbox">
+      <ng-container *ngIf="mediaUrl">
+        <img
+          nz-image
+          *ngIf="mediaType.includes('image'); else file"
+          alt="example"
+          width="200px"
+          height="200px"
+          [nzSrc]="mediaUrl"
+        />
+        <ng-template #file>
+          <a [href]="mediaUrl"
+            ><i nz-icon nzType="paper-clip" nzTheme="outline"></i>
+            {{ mediaOrginalName }}</a
+          >
+        </ng-template>
+        <br />
+      </ng-container>
+      <ng-container *ngIf="replyMessage">
+        <span class="reply-message">
+          <span class="reply-name">{{ replyMessage.from.name }}</span>
+          {{ replyMessage.message }}
+          <button nz-button nzType="link" (click)="replyMessage = null">
+            <i nz-icon nzType="close-circle" nzTheme="outline"></i>
+          </button>
+        </span>
+      </ng-container>
+      <!-- <img nz-image *ngIf="mediaUrl" alt="example" width="100px" height="100px" [nzSrc]="mediaUrl" /> -->
+      <textarea
+        nz-input
+        placeholder="Write something.."
+        [nzAutosize]="{ minRows: 1, maxRows: 5 }"
+        [(ngModel)]="newMessage"
+        (keyup)="typing$.next(true)"
+        (keyup.enter)="sendMessage()"
+      ></textarea>
+    </div>
+    <div class="sendbutton">
+      <button nz-button nzType="primary" (click)="sendMessage()">
+        <i nz-icon nzType="send" nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
+</div>

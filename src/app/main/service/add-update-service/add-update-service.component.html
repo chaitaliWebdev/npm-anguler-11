@@ -1,0 +1,53 @@
+<nz-card>
+  <nz-page-header
+    class="site-page-header"
+    nzBackIcon
+    [nzTitle]="idForUpdate ? 'Update Service' : 'Add Service'"
+  ></nz-page-header>
+<nz-divider></nz-divider>
+  <form nz-form [formGroup]="serviceForm">
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="name" nzRequired
+            >Service Name</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24" nzErrorTip="Should not be blank">
+            <input
+              nz-input
+              formControlName="name"
+              type="text"
+              placeholder="Enter service name "
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="subject">Description</nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <textarea
+              formControlName="description"
+              nz-input
+              rows="4"
+              placeholder="Enter service description"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzJustify="end">
+      <button
+        nz-button
+        nzType="primary"
+        [nzLoading]="buttonLoading"
+        (click)="submit()"
+        class="submitoraddbutton"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</nz-card>
+
+

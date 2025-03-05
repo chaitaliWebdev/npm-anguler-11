@@ -1,0 +1,119 @@
+<div class="chat-main-list-area" #scrollItem>
+  <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+    <nz-list-item *ngFor="let item of messages">
+      <nz-list-item-meta-title>
+        <div
+          class="singlechat"
+          [ngClass]="{
+            'from-you': item.type === 'user',
+            'from-me': item.type === 'me'
+          }"
+        >
+          <div style="text-align: right">
+            <a nz-dropdown [nzDropdownMenu]="menu">
+              <i nz-icon nzType="down"></i>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item (click)="replyMesage(item)">Reply</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+          <span *ngIf="item.type === 'user'"><strong>{{item.from.name}}</strong><nz-tag style="margin-left: 5px;" [nzColor]="'green'">{{item.from.role === 'admin' ? 'Group Admin' : 'Student'}}</nz-tag></span><br>
+          <ng-container *ngIf="item.replyTo">
+            <span class="reply-message">
+              <span class="reply-name">{{ item.replyTo.from.name }}</span>
+              {{ item.replyTo.message }}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="item.media">
+            <img
+              nz-image
+              *ngIf="item.media.mimetype.includes('image'); else file"
+              alt="example"
+              width="200px"
+              height="200px"
+              [nzSrc]="configurationService.mediaBaseUrl + item.media.path"
+            />
+            <ng-template #file>
+              <a
+                *ngIf="item.media.mimetype.includes('pdf'); else othersFile"
+                [href]="getPdfUrl(configurationService.mediaBaseUrl + item.media.path)"
+                target="_blank"
+                >
+                <img
+                alt="example"
+                width="200px"
+                height="200px"
+                [src]="configurationService.mediaBaseUrl + item.media.thumb"
+              />
+              <br>
+              <i nz-icon nzType="paper-clip" nzTheme="outline"></i>
+                {{ item.media.originalname }}
+                </a
+              >
+              <ng-template #othersFile>
+                <a
+                  [href]="configurationService.mediaBaseUrl + item.media.path"
+                  target="_blank"
+                  ><i nz-icon nzType="paper-clip" nzTheme="outline"></i>
+                  {{ item.media.originalname }}</a
+                >
+              </ng-template>
+            </ng-template>
+            <br />
+          </ng-container>
+          {{ item.message }}
+          <small
+            >{{ item.date | date: "longDate" }} -
+            {{ item.date | date: "shortTime" }}</small
+          >
+        </div>
+      </nz-list-item-meta-title>
+    </nz-list-item>
+    <ng-container *ngIf="messages.length === 0">
+      <nz-list-item>
+        <div class="singlechat from-you">
+          <nz-skeleton
+            [nzParagraph]="{ rows: 1 }"
+            style="width: 300px"
+            [nzActive]="true"
+          ></nz-skeleton>
+        </div>
+      </nz-list-item>
+      <nz-list-item style="float: right">
+        <div class="singlechat from-me">
+          <nz-skeleton
+            [nzParagraph]="{ rows: 1 }"
+            style="width: 300px"
+            [nzActive]="true"
+          ></nz-skeleton>
+        </div>
+      </nz-list-item>
+    </ng-container>
+  </nz-list>
+</div>
+
+<ng-template let-message="data" #notificationTemp>
+  <nz-card style="width: 100%">
+    <nz-card-meta
+      [nzAvatar]="avatarTemplate"
+      [nzTitle]="message.from.name"
+      [nzDescription]="message.message"
+    ></nz-card-meta>
+    <div style="margin-top: 5px; text-align: right; width: 100%">
+      <button
+        nz-button
+        nzType="primary"
+        nzSize="small"
+        [routerLink]="['/chat']"
+        [queryParams]="{ user: message.from._id, room: message.chatroom }"
+      >
+        View
+      </button>
+    </div>
+  </nz-card>
+  <ng-template #avatarTemplate>
+    <nz-avatar [nzSrc]="mediaBaseUrl + message.from.profilePicture"></nz-avatar>
+  </ng-template>
+</ng-template>

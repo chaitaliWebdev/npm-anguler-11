@@ -1,0 +1,65 @@
+<nz-card class="mb2">
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+        <div nz-col class="gutter-row" [nzSpan]="14"></div>
+        <div nz-col class="gutter-row" [nzSpan]="4"></div>
+        <div nz-col class="gutter-row" [nzSpan]="6">
+            <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                <input type="text" nz-input placeholder="input search text" [(ngModel)]="search" (ngModelChange)="searchTeacher($event)" />
+            </nz-input-group>
+            <ng-template #suffixIconButton>
+                <button nz-button nzType="primary" nzSearch>
+          <i nz-icon nzType="search"></i>
+        </button>
+            </ng-template>
+        </div>
+    </div>
+</nz-card>
+<nz-card>
+    <nz-table #teacherTable [nzTitle]="header" [nzData]="teachers" [nzLoading]="loading" [nzTotal]="totalDataCount" [(nzPageSize)]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false" (nzQueryParams)="onQueryParamsChange($event)" nzShowSizeChanger>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subjects</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of teacherTable.data">
+                <td>{{ data.name }}</td>
+                <td>
+                    {{ data.subjects }}
+                </td>
+                <td>
+                    <span class="{{ data.status ? 'active' : 'inactive' }} status"></span>
+                </td>
+                <td>
+                    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" [nzPlacement]="'bottomRight'">
+                        <i nz-icon nzType="more" nzTheme="outline"></i>
+                    </a>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <ul nz-menu>
+                            <li nz-menu-item [routerLink]="['update', data._id]">
+                                <button nz-button nzType="link" routerLinkActive="router-link-active">
+                  <i nz-icon nzType="edit" nzTheme="outline"></i> Edit
+                </button>
+                            </li>
+                        </ul>
+                    </nz-dropdown-menu>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</nz-card>
+<ng-template #header>
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <strong>Teachers</strong>
+        </div>
+        <div nz-col nzSpan="12" style="text-align: right">
+            <button nz-button nzType="primary" [routerLink]="'add'">
+        Add Teacher
+      </button>
+        </div>
+    </div>
+</ng-template>

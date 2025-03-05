@@ -1,0 +1,119 @@
+<nz-card>
+  <nz-page-header
+    class="site-page-header"
+    nzBackIcon
+    [nzTitle]="idForUpdate ? 'Update Chat Group' : 'Add Chat Group'"
+  ></nz-page-header>
+  <nz-divider></nz-divider>
+  <form nz-form [formGroup]="chatGroupForm">
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="name" nzRequired
+            >Title</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24" nzErrorTip="Should not be blank">
+            <input
+              nz-input
+              formControlName="title"
+              type="text"
+              placeholder="Enter title "
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="description"
+            >Sub Admins</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24">
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzMode="multiple"
+              nzPlaceHolder="Select a sub admins"
+              formControlName="subAdmins"
+            >
+              <nz-option
+                [nzLabel]="subAdmin.name"
+                [nzValue]="subAdmin._id"
+                *ngFor="let subAdmin of subAdmins"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="description"
+            >Description</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24">
+            <textarea
+              formControlName="description"
+              nz-input
+              rows="4"
+              placeholder="Enter description"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="logo">Logo</nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <nz-upload
+              class="avatar-uploader"
+              [nzAction]="mediaUploadUrl"
+              nzName="file"
+              nzListType="picture-card"
+              [nzShowUploadList]="false"
+              [nzBeforeUpload]="beforeUpload"
+              (nzChange)="handleChange($event)"
+            >
+              <ng-container *ngIf="!avatarUrl">
+                <i
+                  class="upload-icon"
+                  nz-icon
+                  [nzType]="loading ? 'loading' : 'plus'"
+                ></i>
+                <div class="ant-upload-text">Upload</div>
+              </ng-container>
+              <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzFor="topics"
+            >Topics</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24">
+            <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" formControlName="topics">
+              <nz-option *ngFor="let option of topics" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzJustify="end">
+      <button
+        nz-button
+        nzType="primary"
+        [nzLoading]="buttonLoading"
+        (click)="submit()"
+        class="submitoraddbutton"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</nz-card>

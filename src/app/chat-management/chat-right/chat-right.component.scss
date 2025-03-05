@@ -1,0 +1,109 @@
+.chat-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #173954;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .user-pic-name {
+    display: flex;
+    align-items: center;
+    h4 {
+      margin-bottom: 0px;
+      margin-left: 10px;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+  .ifactions {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    i {
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+}
+.chat-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  position: relative;
+}
+.chat-footer {
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: flex-end;
+  border-top: 2px solid #dddddd;
+  .upload-attach{
+    width: 20px;
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  .textchatbox{
+    width: calc(100% - 90px);
+  }
+  .sendbutton{
+    width: 50px;
+    margin-left: 10px;
+    button{
+      width: 100%;
+    }
+  }
+}
+
+.main-chatbody {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  height: 100%;
+  border: 1px solid #e2e2e2;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.typing-text {
+  color: #f158389e;
+  position: absolute;
+  left: 20px;
+  bottom: 45px;
+  font-size: 12px;
+  z-index: 9999;
+  font-style: italic;
+}
+
+.reply-message {
+  position: relative;
+  display: block;
+  background: #e5dcd5;
+  color: #1e2023;
+  border-radius: 5px;
+  padding: 5px;
+  border-left: 5px solid #1e2023;
+  width: 80%;
+  margin: 10px 0;
+  font-size: 14px;
+
+  .reply-name {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
